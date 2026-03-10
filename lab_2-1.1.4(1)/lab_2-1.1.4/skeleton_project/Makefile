@@ -5,12 +5,14 @@ COMPILER    = clang
 CFLAGS      = -Wall -g -std=gnu11 -fsanitize=address
 LDFLAGS     = -fsanitize=address
 EXCLUDE     = '*test*'
+MAIN_FILE   = main2.c
 
 
 SOURCEDIR = source
 OBJECTDIR = build
 
-SOURCES := $(patsubst $(SOURCEDIR)/%, %, $(shell find $(SOURCEDIR) -name '*.c'  ! -name $(EXCLUDE)  ! -path $(EXCLUDE)))
+COMMON_SOURCES := $(patsubst $(SOURCEDIR)/%, %, $(shell find $(SOURCEDIR) -name '*.c'  ! -name $(EXCLUDE)  ! -path $(EXCLUDE) ! -name 'main.c' ! -name 'main2.c'))
+SOURCES := $(COMMON_SOURCES) $(MAIN_FILE)
 OBJECTS = $(addprefix $(OBJECTDIR)/, $(SOURCES:.c=.o))
 
 all: $(EXECUTABLE) 
@@ -32,4 +34,3 @@ $(OBJECTDIR)/%.o: $(SOURCEDIR)/%.c
 
 	
 .PHONY: all rebuild clean
-
