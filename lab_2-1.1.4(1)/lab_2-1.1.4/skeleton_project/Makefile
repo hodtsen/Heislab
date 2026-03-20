@@ -5,7 +5,7 @@ COMPILER    = clang
 CFLAGS      = -Wall -g -std=gnu11 -fsanitize=address
 LDFLAGS     = -fsanitize=address
 EXCLUDE     = '*test*'
-MAIN_FILE   = main2.c
+MAIN_FILE   = main.c
 
 
 SOURCEDIR = source
